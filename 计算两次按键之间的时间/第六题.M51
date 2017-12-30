@@ -1,0 +1,281 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/23/2017  21:49:37  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL 4\C51\BIN\BL51.EXE STARTUP.obj, 第六题.obj TO 第六题
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  第六题.obj (第羅蘝)
+  F:\KEIL 4\C51\LIB\C51S.LIB (?C_INIT)
+  F:\KEIL 4\C51\LIB\C51S.LIB (?C?SIDIV)
+  F:\KEIL 4\C51\LIB\C51S.LIB (?C?SLDIV)
+  F:\KEIL 4\C51\LIB\C51S.LIB (?C?UIDIV)
+  F:\KEIL 4\C51\LIB\C51S.LIB (?C?ULDIV)
+
+
+LINK MAP OF MODULE:  第六题 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         ?DT?第羅蘝
+            DATA    0010H     0004H     UNIT         _DATA_GROUP_
+            IDATA   0014H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0005H     UNIT         ?C_INITSEG
+                    0008H     0003H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     019DH     UNIT         ?PR?MAIN?第羅蘝
+            CODE    01ABH     0159H     UNIT         ?C?LIB_CODE
+            CODE    0304H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0390H     0044H     UNIT         ?C?LDIV
+            CODE    03D4H     003CH     UNIT         ?PR?_DELAY?第羅蘝
+            CODE    0410H     0018H     UNIT         ?CO?第羅蘝
+            CODE    0428H     0013H     UNIT         ?PR?TIMER0?第羅蘝
+            CODE    043BH     0012H     UNIT         ?PR?_DELAY10MS?第羅蘝
+            CODE    044DH     0010H     UNIT         ?PR?TIMER0_START?第羅蘝
+
+
+
+OVERLAY MAP OF MODULE:   第六题 (?C_STARTUP)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?第羅蘝
+  +--> ?C_INITSEG
+
+?PR?MAIN?第羅蘝                 0010H    0004H
+  +--> ?PR?TIMER0_START?第羅蘝
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/23/2017  21:49:37  PAGE 2
+
+
+  +--> ?PR?_DELAY10MS?第羅蘝
+  +--> ?CO?第羅蘝
+  +--> ?PR?_DELAY?第羅蘝
+
+?PR?_DELAY?第羅蘝               -----    -----
+  +--> ?CO?第羅蘝
+
+
+
+SYMBOL TABLE OF MODULE:  第六题 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0304H         SEGMENT       ?C_C51STARTUP
+  I:0014H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0307H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0304H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0304H         LINE#         133
+  C:0306H         LINE#         134
+  C:0307H         LINE#         135
+  C:0308H         LINE#         136
+  C:030AH         LINE#         185
+  C:030DH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        第羅蘝
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:0410H         PUBLIC        weixuan
+  B:00A8H.7       PUBLIC        EA
+  C:03F0H         PUBLIC        _delay
+  C:000EH         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/23/2017  21:49:37  PAGE 3
+
+
+  C:043BH         PUBLIC        _Delay10ms
+  D:0089H         PUBLIC        TMOD
+  C:044DH         PUBLIC        Timer0_start
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  D:0008H         PUBLIC        num
+  C:0428H         PUBLIC        timer0
+  B:0088H.4       PUBLIC        TR0
+  D:000AH         PUBLIC        a
+  C:0418H         PUBLIC        duanxuan
+  B:00A0H.7       PUBLIC        key1
+  B:00A0H.6       PUBLIC        key2
+  -------         PROC          L?0054
+  -------         ENDPROC       L?0054
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        i
+  -------         DO            
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:03F0H         LINE#         15
+  C:03F0H         LINE#         16
+  C:03F0H         LINE#         18
+  C:03FBH         LINE#         19
+  C:040FH         LINE#         20
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  -------         DO            
+  D:0010H         SYMBOL        b
+  D:0012H         SYMBOL        i
+  C:000EH         SYMBOL        loop
+  -------         ENDDO         
+  C:000EH         LINE#         22
+  C:000EH         LINE#         23
+  C:000EH         LINE#         25
+  C:000EH         LINE#         26
+  C:0011H         LINE#         27
+  C:0013H         LINE#         28
+  C:0013H         LINE#         29
+  C:0013H         LINE#         30
+  C:0018H         LINE#         31
+  C:001BH         LINE#         32
+  C:001BH         LINE#         33
+  C:0020H         LINE#         34
+  C:0023H         LINE#         35
+  C:0023H         LINE#         36
+  C:0025H         LINE#         37
+  C:002AH         LINE#         38
+  C:002DH         LINE#         39
+  C:002DH         LINE#         40
+  C:0032H         LINE#         41
+  C:003AH         LINE#         42
+  C:0045H         LINE#         43
+  C:0045H         LINE#         44
+  C:0045H         LINE#         45
+  C:0068H         LINE#         46
+  C:009DH         LINE#         47
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/23/2017  21:49:37  PAGE 4
+
+
+  C:00C5H         LINE#         48
+  C:00EBH         LINE#         49
+  C:0111H         LINE#         50
+  C:012AH         LINE#         51
+  C:012FH         LINE#         52
+  C:012FH         LINE#         53
+  C:012FH         LINE#         54
+  C:012FH         LINE#         55
+  C:0132H         LINE#         56
+  C:0135H         LINE#         57
+  C:0148H         LINE#         58
+  C:014EH         LINE#         59
+  C:014EH         LINE#         60
+  C:0150H         LINE#         61
+  C:0155H         LINE#         62
+  C:015BH         LINE#         63
+  C:015BH         LINE#         64
+  C:0160H         LINE#         65
+  C:0163H         LINE#         66
+  C:0163H         LINE#         67
+  C:0168H         LINE#         68
+  C:0170H         LINE#         69
+  C:017BH         LINE#         70
+  C:017BH         LINE#         71
+  C:017BH         LINE#         72
+  C:017EH         LINE#         73
+  C:017EH         LINE#         74
+  C:0183H         LINE#         75
+  C:0186H         LINE#         76
+  C:0186H         LINE#         77
+  C:0189H         LINE#         78
+  C:0189H         LINE#         80
+  C:0189H         LINE#         81
+  C:0189H         LINE#         84
+  C:0189H         LINE#         85
+  C:0189H         LINE#         86
+  C:019BH         LINE#         87
+  C:019BH         LINE#         88
+  C:019BH         LINE#         89
+  C:019BH         LINE#         90
+  C:019EH         LINE#         91
+  C:01A1H         LINE#         92
+  -------         ENDPROC       MAIN
+  -------         PROC          TIMER0_START
+  C:044DH         LINE#         102
+  C:044DH         LINE#         103
+  C:044DH         LINE#         104
+  C:0450H         LINE#         105
+  C:0453H         LINE#         106
+  C:0456H         LINE#         107
+  C:0458H         LINE#         108
+  C:045AH         LINE#         109
+  C:045CH         LINE#         110
+  -------         ENDPROC       TIMER0_START
+  -------         PROC          _DELAY10MS
+  D:0007H         SYMBOL        c
+  -------         DO            
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/23/2017  21:49:37  PAGE 5
+
+
+  D:0006H         SYMBOL        a
+  D:0005H         SYMBOL        b
+  -------         ENDDO         
+  C:043BH         LINE#         111
+  C:043BH         LINE#         112
+  C:043BH         LINE#         114
+  C:0441H         LINE#         115
+  C:0443H         LINE#         116
+  C:044CH         LINE#         117
+  -------         ENDPROC       _DELAY10MS
+  -------         PROC          TIMER0
+  C:0428H         LINE#         118
+  C:042AH         LINE#         120
+  C:042DH         LINE#         121
+  C:0430H         LINE#         122
+  C:0438H         LINE#         123
+  -------         ENDPROC       TIMER0
+  -------         ENDMOD        第羅蘝
+
+  -------         MODULE        ?C?SIDIV
+  C:01ABH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?SLDIV
+  C:0390H         PUBLIC        ?C?SLDIV
+  -------         ENDMOD        ?C?SLDIV
+
+  -------         MODULE        ?C?UIDIV
+  C:01E1H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?ULDIV
+  C:0272H         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+Program Size: data=21.0 xdata=0 code=1114
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

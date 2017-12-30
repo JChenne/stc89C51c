@@ -1,0 +1,150 @@
+C51 COMPILER V9.01   第羅蘝                                                                07/23/2017 21:49:37 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 第羅蘝
+OBJECT MODULE PLACED IN 第六题.OBJ
+COMPILER INVOKED BY: F:\keil 4\C51\BIN\C51.EXE 第六题.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #define uchar  unsigned char
+   3          #define uint   unsigned int
+   4          sbit key1=P2^7;
+   5          sbit key2=P2^6;
+   6          uchar code weixuan[8] = {0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f};
+   7          uchar code duanxuan[16] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07,
+   8                                    0x7F, 0x6F, 0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71};
+   9          unsigned char a[6];
+  10          int num = 0;
+  11          
+  12          void Timer0_start();                            //开启定时器0
+  13          void Delay10ms(unsigned char c);        //延时10ms
+  14          
+  15          void delay(int i)
+  16          {
+  17   1              int j;
+  18   1              for(i;i>0;i--)
+  19   1              for(j=110;j>0;j--);
+  20   1      }
+  21          
+  22          void main()
+  23          {
+  24   1              int b,i;
+  25   1      loop:   
+  26   1              Timer0_start();
+  27   1              EA=0;
+  28   1              while(1)
+  29   1              {
+  30   2                      num=0;
+  31   2                      if (key1 != 0xFF)               //检测按键K1是否按下
+  32   2                      {
+  33   3                              Delay10ms(1);   //消除抖动
+  34   3                              if (key1 != 0xFF)       //再次检测按键是否按下
+  35   3                              {
+  36   4                                      EA=1 ;
+  37   4                                      i = 0;
+  38   4                                      while ((i<50) && (key1 != 0xFF))         //检测按键是否松开
+  39   4                                      {
+  40   5                                              Delay10ms(1);
+  41   5                                              i++;
+  42   5                                      }
+  43   4                                      while(1)
+  44   4                                      {
+  45   5                                               a[0] = duanxuan[num / 100000];
+  46   5                                               a[1] = duanxuan[num % 100000 / 10000];
+  47   5                                               a[2] = duanxuan[num % 10000 / 1000]   | 0x80;
+  48   5                                               a[3] = duanxuan[num % 1000 / 100];
+  49   5                                               a[4] = duanxuan[num % 100 / 10];
+  50   5                                               a[5] = duanxuan[num % 10];
+  51   5                                               for(b=0;b<6;b++)
+  52   5                                               {
+  53   6                                                      P1=weixuan[b];
+  54   6                                                      P0=a[b];
+  55   6                                                      delay(1);
+C51 COMPILER V9.01   第羅蘝                                                                07/23/2017 21:49:37 PAGE 2   
+
+  56   6                                                      P0=0x00;
+  57   6                                               }
+  58   5                                              if (key1 != 0xFF)               //检测按键K1是否按下
+  59   5                                              {       
+  60   6                                                      EA=0;
+  61   6                                                      Delay10ms(1);   //消除抖动
+  62   6                                                      if (key1 != 0xFF)       //再次检测按键是否按下
+  63   6                                                      {                                                       
+  64   7                                                              i = 0;
+  65   7                                                              while ((i<50) && (key1 != 0xFF))         //检测按键是否松开
+  66   7                                                              {
+  67   8                                                                      Delay10ms(1);
+  68   8                                                                      i++;
+  69   8                                                              }
+  70   7                                                               while(1)
+  71   7                                                               {
+  72   8                                                                      if (key2 != 0xFF)               //检测按键K1是否按下
+  73   8                                                                      {
+  74   9                                                                              Delay10ms(1);   //消除抖动
+  75   9                                                                              if (key2 != 0xFF)       //再次检测按键是否按下
+  76   9                                                                              {
+  77  10                                                                                      goto loop;
+  78  10                                                                                      i = 0;
+  79  10                                                                                      while ((i<50) && (key2 != 0xFF))         //检测按键是否松开
+  80  10                                                                                      {
+  81  11                                                                                              Delay10ms(1);
+  82  11                                                                                              i++;
+  83  11                                                                                      }
+  84  10                                                                              }
+  85   9                                                                      }
+  86   8                                                                       for(b=0;b<6;b++)
+  87   8                                                                       {
+  88   9                                                                              P1=weixuan[b];
+  89   9                                                                              P0=a[b];
+  90   9                                                                              delay(1);
+  91   9                                                                              P0=0x00;
+  92   9                                                                       }
+  93   8                                                              }
+  94   7                                                      }
+  95   6                                              }       
+  96   5                                      }
+  97   4                              }
+  98   3                 }
+  99   2              }
+ 100   1      }
+ 101          
+ 102          void Timer0_start()
+ 103          {
+ 104   1              TMOD = 0X01;    //选用计数模式和 选用模式1
+ 105   1              TH0 = (65536 - 1000) / 256;   //给计数器装初值  1ms
+ 106   1              TL0 = (65536 - 1000) % 256;
+ 107   1              EA = 1;      //开发所有中断
+ 108   1              ET0 = 1;       //开启定时器T0中断
+ 109   1              TR0 = 1;             //启动T0定时器
+ 110   1      }
+ 111          void Delay10ms(unsigned char c)
+ 112          {
+ 113   1              unsigned char a,b;
+ 114   1              for(; c > 0; c --)
+ 115   1                      for(a = 38; a > 0; a --)
+ 116   1                              for( b = 138; b >0 ; b--);
+ 117   1      }
+C51 COMPILER V9.01   第羅蘝                                                                07/23/2017 21:49:37 PAGE 3   
+
+ 118          void timer0() interrupt 1
+ 119          {
+ 120   1              TH0 = (65536 - 1000) / 256;   //给计数器装初值
+ 121   1              TL0 = (65536 - 1000) % 256;
+ 122   1              num ++;
+ 123   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    526    ----
+   CONSTANT SIZE    =     24    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
