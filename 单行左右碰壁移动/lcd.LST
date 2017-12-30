@@ -1,0 +1,59 @@
+C51 COMPILER V9.01   LCD                                                                   02/16/2017 16:49:13 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN lcd.OBJ
+COMPILER INVOKED BY: F:\keil 4\C51\BIN\C51.EXE lcd.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include"lcd.h"
+   2          #include"delay.h"
+   3          #include<reg51.h>
+   4          void LcdWriteCom(unsigned char com)
+   5          {
+   6   1              e=0;
+   7   1              rs=0;
+   8   1              rw=0;
+   9   1              P0=com;
+  10   1              DelayMs(10);
+  11   1              e=1;
+  12   1              DelayMs(10);
+  13   1              e=0;    
+  14   1      }
+  15          
+  16          void LcdWriteData(unsigned char dat)
+  17          {
+  18   1              e=0;
+  19   1              rs=1  ;
+  20   1              rw=0;
+  21   1              P0=dat;
+  22   1              DelayMs(10);
+  23   1              e=1;
+  24   1              DelayMs(10);
+  25   1              e=0;                                                            
+  26   1      }
+  27          
+  28          void LcdInit()
+  29          {
+  30   1              DelayMs(300);
+  31   1              LcdWriteCom(0x38);
+  32   1              LcdWriteCom(0x08);
+  33   1              LcdWriteCom(0x01);
+  34   1              LcdWriteCom(0x06);
+  35   1              LcdWriteCom(0x0c);      
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     86    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

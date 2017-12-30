@@ -1,0 +1,69 @@
+C51 COMPILER V9.01   MAIN                                                                  02/16/2017 16:49:13 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: F:\keil 4\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"lcd.h"
+   3          #include"delay.h"
+   4          #include"remote control.h"
+*** WARNING C318 IN LINE 4 OF main.c: can't open file 'remote control.h'
+   5          void main()
+   6          {
+   7   1              unsigned char name[3]="pig";
+   8   1              unsigned char name2[]="cat";
+   9   1              int i,j,n;      
+  10   1              LcdInit();
+  11   1              LcdWriteCom(0x80+5);
+  12   1              for(n=0;n<3;n++)
+  13   1              {
+  14   2                      LcdWriteData(name2[n]); 
+  15   2              }
+  16   1              
+  17   1              LcdWriteCom(0x06);                                                 //LcdWriteData       LcdWriteCom     
+  18   1              for(j=0 ;j<14 ;j++ )                                       //j为移动格数+1
+  19   1              {
+  20   2                      LcdWriteCom(0xc0);
+  21   2                      for(n=0;n<j;n++)
+  22   2                      {                                                                         //从左往右移
+  23   3                              LcdWriteData(' ');      
+  24   3                      }
+  25   2                      for(i=0;i<3;i++)
+  26   2                      LcdWriteData(name[i]);
+  27   2                      delay(50);
+  28   2              }
+  29   1      
+  30   1      
+  31   1              LcdWriteCom(0x04);                                         //光标减一
+  32   1              for(j=0 ;j<13 ;j++ )                               //移动格数
+  33   1              {
+  34   2                      LcdWriteCom(0xc0+15);                      //起始位置
+  35   2                      for(n=0;n<j;n++)
+  36   2                      {
+  37   3                              LcdWriteData(' ');      
+  38   3                      }
+  39   2                      for(i=2;i>=0;i--)                                  //从右往左移
+  40   2                      LcdWriteData(name[i]);
+  41   2                      delay(50);
+  42   2              }
+  43   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    300    ----
+   CONSTANT SIZE    =      7    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V9.01   MAIN                                                                  02/16/2017 16:49:13 PAGE 2   
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

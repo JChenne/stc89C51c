@@ -1,0 +1,23 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+F:\stc89c51\µ¥ÐÐ×óÓÒÅö±ÚÒÆ¶¯\temp.uvproj
+Project File Date:  12/23/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+main.c(4): warning C318: can't open file 'remote control.h'
+compiling delay.c...
+compiling lcd.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY1?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY2?DELAY
+Program Size: data=22.0 xdata=0 code=720
+creating hex file from "temp"...
+"temp" - 0 Error(s), 3 Warning(s).
