@@ -1,0 +1,190 @@
+C51 COMPILER V9.01   MAIN                                                                  07/23/2017 15:21:09 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: F:\keil 4\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #define uchar unsigned char
+   3          #define uint unsigned int 
+   4          uchar code vioce[]={0xd8,0xf7,    //1
+   5                                                  0xbd,0xf8,        //2
+   6                                                  0x87,0xf9,              //3
+   7                                                  0xe4,0xf9,              //4
+   8                                                  0x90,0xfa,              //5
+   9                                                  0x29,0xfb,              //6
+  10                                                  0xb1,0xfb,              //7
+  11                                                  0xef,0xfb};             //8 
+  12          
+  13          sbit K1 = P1^0;
+  14          sbit K2 = P1^1;
+  15          sbit K3 = P1^2;
+  16          sbit K4 = P1^3;
+  17          sbit K5 = P1^4;
+  18          sbit K6 = P1^5;
+  19          sbit K7 = P1^6;
+  20          sbit K8 = P1^7;
+  21          uchar a,b;
+  22          sbit beep = P0^0;
+  23          void delay(int i);
+  24          void keyscan();
+  25                                                          
+  26          
+  27          
+  28          void main()
+  29          {                                 
+  30   1              TMOD = 0x01;
+  31   1              TL0 = vioce[a];
+  32   1              TH0 = vioce[b];                                                                                                         
+  33   1              ET0 = 1;
+  34   1              TR0 = 0;
+  35   1              EA = 1;
+  36   1              while(1)
+  37   1              {
+  38   2                      keyscan();
+  39   2              }
+  40   1      }
+  41          
+  42          void delay(int i)
+  43          {
+  44   1              int j;
+  45   1              for(i; i > 0; i --)
+  46   1                      for(j = 110; j > 0; j--);
+  47   1      }
+  48          
+  49          
+  50          void keyscan()
+  51          {
+  52   1              if(K1 == 0)
+  53   1              {
+  54   2                      delay(1);
+  55   2                      if(K1 == 0)
+C51 COMPILER V9.01   MAIN                                                                  07/23/2017 15:21:09 PAGE 2   
+
+  56   2                      {
+  57   3                              a = 0;
+  58   3                              b = 1;
+  59   3                              TR0 = 1;
+  60   3      
+  61   3                      }
+  62   2                      while(K1 == 0);
+  63   2                      TR0 = 0;
+  64   2              }
+  65   1              if(K2 == 0)
+  66   1              {
+  67   2                      delay(1);
+  68   2                      if(K2 == 0)
+  69   2                      {
+  70   3                              a = 2;
+  71   3                              b = 3;
+  72   3                              TR0 = 1;
+  73   3      
+  74   3                      }
+  75   2                      while(K2 == 0);
+  76   2                      TR0 = 0;
+  77   2              }
+  78   1              if(K3 == 0)
+  79   1              {
+  80   2                      delay(1);
+  81   2                      if(K3 == 0)
+  82   2                      {
+  83   3                              a = 4;
+  84   3                              b = 5;
+  85   3                              TR0 = 1;
+  86   3      
+  87   3                      }
+  88   2                      while(K3 == 0);
+  89   2                      TR0 = 0;
+  90   2              }
+  91   1              if(K4 == 0)
+  92   1              {
+  93   2                      delay(1);
+  94   2                      if(K4 == 0)
+  95   2                      {
+  96   3                              a = 6;
+  97   3                              b = 7;
+  98   3                              TR0 = 1;
+  99   3      
+ 100   3                      }
+ 101   2                      while(K4 == 0);
+ 102   2                      TR0 = 0;
+ 103   2              }
+ 104   1              if(K5 == 0)
+ 105   1              {
+ 106   2                      delay(1);
+ 107   2                      if(K5 == 0)
+ 108   2                      {
+ 109   3                              a = 8;
+ 110   3                              b = 9;
+ 111   3                              TR0 = 1;
+ 112   3      
+ 113   3                      }
+ 114   2                      while(K5 == 0);
+ 115   2                      TR0 = 0;
+ 116   2              }
+ 117   1              if(K6 == 0)
+C51 COMPILER V9.01   MAIN                                                                  07/23/2017 15:21:09 PAGE 3   
+
+ 118   1              {
+ 119   2                      delay(1);
+ 120   2                      if(K6 == 0)
+ 121   2                      {
+ 122   3                              a = 10;
+ 123   3                              b = 11;
+ 124   3                              TR0 = 1;
+ 125   3      
+ 126   3                      }
+ 127   2                      while(K6 == 0);
+ 128   2                      TR0 = 0;
+ 129   2              }
+ 130   1              if(K7 == 0)
+ 131   1              {
+ 132   2                      delay(1);
+ 133   2                      if(K7 == 0)
+ 134   2                      {
+ 135   3                              a = 12;
+ 136   3                              b = 13;
+ 137   3                              TR0 = 1;
+ 138   3      
+ 139   3                      }
+ 140   2                      while(K7 == 0);
+ 141   2                      TR0 = 0;
+ 142   2              }
+ 143   1              if(K8 == 0)
+ 144   1              {
+ 145   2                      delay(1);
+ 146   2                      if(K8 == 0)
+ 147   2                      {
+ 148   3                              a = 14;
+ 149   3                              b = 15;
+ 150   3                              TR0 = 1;
+ 151   3      
+ 152   3                      }
+ 153   2                      while(K8 == 0);
+ 154   2                      TR0 = 0;
+ 155   2              }
+ 156   1      }
+ 157          
+ 158          void timer()  interrupt 1
+ 159          {
+ 160   1              TL0 = vioce[a];
+ 161   1              TH0 = vioce[b];
+ 162   1              beep=~beep;
+ 163   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    268    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
